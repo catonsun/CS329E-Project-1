@@ -7,12 +7,12 @@ from PIL import Image, ImageTk
 test = Flask(__name__)
 
 
-@app.route("/")
+@test.route("/")
 def index():
     return render_template("home.html")
 
 
-@app.route("/upload", methods=['POST', 'GET'])
+@test.route("/upload", methods=['POST', 'GET'])
 def upload():
     if request.method == 'POST':
         file = request.files['file']

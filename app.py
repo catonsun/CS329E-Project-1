@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 app = Flask(__name__)
 
 
-
+filename = ""
 
 
 @app.route("/")

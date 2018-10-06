@@ -10,7 +10,7 @@ class MyTest(unittest.TestCase):
         self.assertNotEqual("error", returnSuccess())
 
     def test3(self):
-        self.assertEqual("", getFileName())
+        self.assertNotEqual("", getFileName())
 
     def test4(self):
         self.assertEqual(getFileName()[-3:].lower(), "jpg")

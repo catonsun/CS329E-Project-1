@@ -5,6 +5,9 @@ from PIL import Image, ImageTk
 app = Flask(__name__)
 
 
+
+
+
 @app.route("/")
 def index():
     return render_template("home.html")
@@ -16,14 +19,23 @@ def upload():
         file = request.files['file']
         filename = file.filename
         file.save(os.path.join('UPLOAD_FOLDER', filename))
-        uploadAction(file)
+        uploadAction(filename)
         return redirect(url_for('index'))
     return render_template("upload.html")
+
 
 def uploadAction(filename):
     picture = Image.open(filename)
     picture.show()
     return
+
+
+def getFileName():
+    return filename
+
+
+def returnSuccess():
+    return "success"
 
 if __name__ == '__main__':
     app.run()

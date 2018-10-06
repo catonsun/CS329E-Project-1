@@ -1,36 +1,22 @@
 import unittest
-
-from flask import Flask, render_template, request, redirect, url_for
-import os
-import tkinter as tk
-from PIL import Image, ImageTk
-test = Flask(__name__)
+from app import returnSuccess, getFileName
 
 
-@app.route("/")
-def index():
-    return render_template("home.html")
+class MyTest(unittest.TestCase):
+    def test(self):
+        self.assertEqual("success", returnSuccess())
 
+    def test1(self):
+        self.assertNotEqual("error", returnSuccess())
 
-@app.route("/upload", methods=['POST', 'GET'])
-def upload():
-    if request.method == 'POST':
-        file = request.files['file']
-        filename = file.filename
-        return filename
-        return redirect(url_for('index'))
-    return render_template("upload.html")
+    def test3(self):
+        self.assertEqual("", getFileName())
 
-def documentType():
-    docType = filename[-3:]
-    return docType
+    def test4(self):
+        self.assertEqual(getFileName()[-3:].lower(), "jpg")
 
-class Mytest(unittest.TestCase):
-    def isCorrectDocumentTypeLower(self):
-        self.assertEqual(docType.lower(), "jpg")
-
-    def isCorrectDocumentTypeUpper(self):
-        self.assertEqual(docType.upper(), "JPG")
 
 if __name__ == '__main__':
-    test.run()
+    suite = unittest.TestLoader().loadTestsFromTestCase(MyTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()

@@ -23,6 +23,9 @@ def upload():
         return redirect(url_for('index'))
     return render_template("upload.html")
 
+@app.route("/edit", methods=['POST', 'GET'])
+def edit():
+    return render_template("edit.html")
 
 def uploadAction(filename):
     picture = Image.open(filename)

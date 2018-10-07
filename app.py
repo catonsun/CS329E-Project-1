@@ -19,7 +19,7 @@ def upload():
         file = request.files['file']
         filename = file.filename
         file.save(os.path.join('UPLOAD_FOLDER', filename))
-        uploadAction(filename)
+        uploadAction(file)
         return redirect(url_for('index'))
     return render_template("upload.html")
 

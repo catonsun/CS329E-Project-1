@@ -3,14 +3,29 @@
 {% block body %}
 <h1>Edit a picture!</h1>
 <body>
+    <label>Filter Wanted</label>
+    <select id = "myFilters">
+        <option value = "filter 1">filter 1</option>
+        <option value = "filter 2">filter 2</option>
+        <option value = "filter 3">filter 3</option>
+    </select>
     <button onclick="">
             <a href="/upload">Change Filter</a>
         </button>
+    <br> <br>
+    <label>Text Wanted</label>
+    <input type = "text">
     <button onclick="">
-            <a href="/upload">Add Text</a>
+        <a href="/upload">Add Text</a>
         </button>
+    <br> <br>
+    <label>Desired Height</label> <br>
+    <label>width</label>
+    <input type = "text"> <br>
+    <label>height</label>
+    <input type = "text">
     <button onclick="">
-            <a href="/upload">Change Size</a>
+        <a href="/upload">Change Size</a>
         </button>
 </body>
 {% endblock %}

@@ -2,7 +2,20 @@
 
 {% block body %}
 <h1>Edit a picture!</h1>
+
+<style>
+    img {
+        max-height: 1000px;
+        max-width: 1000px;
+    }
+</style>
+
 <body>
+
+    <img id="pic" src="{{ url_for('static', filename="picture") }}">
+    <br>
+
+
     <label>Filter Wanted</label>
     <select id = "myFilters">
         <option value = "filter 1">filter 1</option>

@@ -55,10 +55,10 @@ def display():
     return redirect(url_for('edit'))
 
 
-@app.route('/download', methods=['GET', 'POST'])
-def download():
-    uploads = os.path.join(app.root_path, app.config[])
-    return send_from_directory(directory=uploads, filename='picture.jpg')
+# @app.route('/download', methods=['GET', 'POST'])
+# def download():
+#     uploads = os.path.join(app.root_path, app.config[])
+#     return send_from_directory(directory=uploads, filename='picture.jpg')
 
 
 def setFileName(name):

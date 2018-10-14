@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, send_from_directory
 import os
 import tkinter as tk
-from PIL import Image, ImageTk
+from PIL import Image, ImageFont, ImageDraw
 
 app = Flask(__name__)
 
@@ -57,20 +57,22 @@ def display():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    uploads = os.path.join(app.root_path, app.config[])
+    uploads = os.path.join(app.root_path, app.config)
     return send_from_directory(directory=uploads, filename='picture.jpg')
 
 @app.route("/addText", methods=['POST'])
 def addText():
     if request.method == 'POST':
         text = request.form['text']
+        print(text)
     # Open image
-        img = Image.open(filename)
-
+        pic = Image.open(filename)
     # Add text to image
-
+        attach = ImageDraw.Draw(pic)
+        font_style = ImageFont.truetype("arial.ttf", 12)
+        attach.text((10,10),text,(100,100,100),font=font_style)
     # Save image
-
+        #pic.save(filename)
     # Display image
     #return
 

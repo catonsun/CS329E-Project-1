@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file, send_from_directory
 import os
 import tkinter as tk
 from PIL import Image, ImageTk
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 filename = ""
 
@@ -22,15 +22,43 @@ def upload():
         file = request.files['file']
         filename = file.filename
         setFileName(filename)
-        file.save(os.path.join('static', 'picture'))
-        uploadAction(file)
+        file.save(os.path.join('static', 'picture.jpg'))
         return redirect(url_for('index'))
     return render_template("upload.html")
 
 
 @app.route("/edit", methods=['POST', 'GET'])
 def edit():
-    return render_template("edit.html", picture_name=filename)
+    return render_template("edit.html")
+
+
+@app.route("/edit-2", methods=["POST"])
+def edit2():
+    print(request.form['height'])
+    print(request.form['width'])
+    try:
+        height = int(request.form['height'])
+        width = int(request.form['width'])
+        size = width, height
+        picture = Image.open('static/picture.jpg')
+        picture = picture.resize((width, height), Image.ANTIALIAS)
+        picture.save('static/picture.jpg')
+    except ValueError:
+        print("Error found.")
+        pass
+    return render_template("edit.html")
+
+
+@app.route("/display")
+def display():
+    uploadAction('static/picture.jpg')
+    return redirect(url_for('edit'))
+
+
+@app.route('/download', methods=['GET', 'POST'])
+def download():
+    uploads = os.path.join(app.root_path, app.config[])
+    return send_from_directory(directory=uploads, filename='picture.jpg')
 
 
 def setFileName(name):
@@ -38,8 +66,8 @@ def setFileName(name):
     filename = name
 
 
-def uploadAction(filename):
-    picture = Image.open(filename)
+def uploadAction(name):
+    picture = Image.open(name)
     picture.show()
     return
 

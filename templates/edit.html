@@ -26,12 +26,20 @@
             <a href="/edit">Change Filter</a>
         </button>
     <br> <br>
+
+    <form action=”” method=”POST”>
+	<label> Text Wanted </label>
+	<input type=”text” name=”picText” value={{request.form.text}}>
+
+    <button onclick="">
+        <a href="/addText">Add Text</a>
     <label>Text Wanted: </label>
     <input type = "text">
     <button onclick="">
         <a href="/edit">Add Text</a>
         </button>
     <br> <br>
+
     <label>Desired Height</label> <br>
     <form action="{{ url_for('edit2') }}" method="post">
         <label>Width:  </label>

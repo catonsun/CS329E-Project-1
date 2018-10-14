@@ -60,6 +60,19 @@ def download():
     uploads = os.path.join(app.root_path, app.config[])
     return send_from_directory(directory=uploads, filename='picture.jpg')
 
+@app.route("/addText", methods=['POST'])
+def addText():
+    if request.method == 'POST':
+        text = request.form['text']
+    # Open image
+        img = Image.open(filename)
+
+    # Add text to image
+
+    # Save image
+
+    # Display image
+    #return
 
 def setFileName(name):
     global filename

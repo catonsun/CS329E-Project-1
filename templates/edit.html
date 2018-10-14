@@ -26,12 +26,21 @@
             <a href="/edit">Change Filter</a>
         </button>
     <br> <br>
-    <label>Text Wanted: </label>
-    <input type = "text">
+
+    <form action=”” method=”POST”>
+	<label> Text Wanted </label>
+	<input type=”text” name=”picText”>
+
     <button onclick="">
-        <a href="/edit">Add Text</a>
+        <a href="/addText">Add Text</a>
         </button>
+    <!-- <label>Text Wanted: </label>
+        <input type = "text">
+        <button onclick="">
+        <a href="/edit">Add Text</a> -->
+
     <br> <br>
+
     <label>Desired Height</label> <br>
     <form action="{{ url_for('edit2') }}" method="post">
         <label>Width:  </label>

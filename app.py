@@ -81,12 +81,13 @@ def addText():
 def setFileName(name):
     global filename
     filename = name
+    return filename
 
 
 def uploadAction(name):
     picture = Image.open(name)
     picture.show()
-    return
+    return "picture opened successfully"
 
 
 def getFileName():

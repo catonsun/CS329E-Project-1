@@ -73,7 +73,7 @@ def addText():
         y = 10
         attach = ImageDraw.Draw(pic)
         font_style = ImageFont.truetype("arial.ttf", 12)
-        attach.text((x,y),text,(100,100,100),font=font_style)
+        attach.text((10,10),text,(100,100,100),font=font_style)
     # Save image
         #pic.save(filename)
     # Display image

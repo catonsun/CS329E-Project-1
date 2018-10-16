@@ -66,18 +66,22 @@ def addText():
     if request.method == 'POST':
         text = request.form['addText']
         print(text)
+        try:
     # Open image
-        pic = Image.open("static/picture.jpg")
+            pic = Image.open("static/picture.jpg")
     # Add text to image
-        x = 10
-        y = 10
-        attach = ImageDraw.Draw(pic)
-        font_style = ImageFont.truetype("arial.ttf", 12)
-        attach.text((10,10),text,(100,100,100),font=font_style)
+            x = 10
+            y = 10
+            attach = ImageDraw.Draw(pic)
+            font_style = ImageFont.truetype("arial.ttf", 25)
+            attach.text((x,y),text,(100,100,100),font=font_style)
     # Save image
-        #pic.save(filename)
+            pic.save("static/picture.jpg")
     # Display image
-        #return
+        except ValueError:
+            print("Error found.")
+            pass
+        return render_template("edit.html")
 
 
 def setFileName(name):

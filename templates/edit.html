@@ -27,17 +27,19 @@
         </button>
     <br> <br>
 
-    <form action=”” method=”POST”>
+
 	<label> Text Wanted </label>
 	<input type=”text” name=”picText”>
-
-    <button onclick="">
+    <form action= "{{ url_for('addText') }}" method=”POST” id="form">
+    <button type = "submit" form = "form" value = "Submit">Add Text</button>
+        <!--<button onclick="">
         <a href="/addText">Add Text</a>
         </button>
-    <!-- <label>Text Wanted: </label>
+     <label>Text Wanted: </label>
         <input type = "text">
         <button onclick="">
         <a href="/edit">Add Text</a> -->
+    </form>
 
     <br> <br>
 

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, send_from_directory
 import os
 import tkinter as tk
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageFilter
 
 app = Flask(__name__)
 
@@ -48,7 +48,6 @@ def edit2():
         pass
     return render_template("edit.html")
 
-
 @app.route("/display")
 def display():
     uploadAction('static/picture.jpg')
@@ -79,6 +78,25 @@ def addText():
     # Display image
         #return
 
+
+@app.route("/filter", methods=["POST"])
+def addFilter():
+    if request.form['filters'] == "filter 1":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.BLUR)
+        picture.save('static/picture.jpg')
+
+    if request.form['filters'] == "filter 2":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.EMBOSS)
+        picture.save('static/picture.jpg')
+
+    if request.form['filters'] == "filter 3":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.SHARPEN)
+        picture.save('static/picture.jpg')
+
+    return render_template("edit.html")
 
 def setFileName(name):
     global filename

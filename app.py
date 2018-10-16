@@ -65,20 +65,19 @@ def download():
 def addText():
     if request.method == 'POST':
         text = request.form['addText']
-        print(text)
+        #need to do unit test properly
+        textSize = int(request.form['fontSize'])
         try:
     # Open image
             pic = Image.open("static/picture.jpg")
     # Add text to image
-            x = 10
-            y = 10
             attach = ImageDraw.Draw(pic)
-            font_style = ImageFont.truetype("arial.ttf", 25)
-            attach.text((x,y),text,(100,100,100),font=font_style)
+            font_style = ImageFont.truetype("arial.ttf", textSize)
+            attach.text((10,10),text,(255,255,255),font=font_style)
     # Save image
             pic.save("static/picture.jpg")
     # Display image
-        except ValueError:
+        except TypeError:
             print("Error found.")
             pass
         return render_template("edit.html")

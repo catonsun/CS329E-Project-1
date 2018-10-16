@@ -21,6 +21,9 @@ class MyTest(unittest.TestCase):
     def test6(self):
         self.assertEqual("picture opened successfully", uploadAction('static/picture.jpg'))
 
+    #test that addText()'s fontsize is a integer
+    def test7(self):
+        self.assertRaises(TypeError, font_style, int("string"))
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(MyTest)

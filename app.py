@@ -64,10 +64,10 @@ def download():
 @app.route("/addText", methods=['POST'])
 def addText():
     if request.method == 'POST':
-        text = request.form['text']
+        text = request.form['addText']
         print(text)
     # Open image
-        pic = Image.open(filename)
+        pic = Image.open("static/picture.jpg")
     # Add text to image
         x = 10
         y = 10

@@ -29,8 +29,8 @@
 
 
 	<label> Text Wanted </label>
-	<input type=”text” name=”picText”>
-    <form action= "{{ url_for('addText') }}" method=”POST” id="form">
+	<!--<input type=”text” name=”picText”>
+    <form action= "/addText" method=”POST” id="form">
     <button type = "submit" form = "form" value = "Submit">Add Text</button>
         <!--<button onclick="">
         <a href="/addText">Add Text</a>
@@ -39,6 +39,13 @@
         <input type = "text">
         <button onclick="">
         <a href="/edit">Add Text</a> -->
+      <body>
+        Add Text
+        <form action="/addText" method="post">
+          <input type="text" name="addText" />
+          <input type="submit"/>
+        </form>
+      </body>
 
     <br> <br>
 

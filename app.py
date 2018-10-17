@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file, send_from_directory
 import os
 import tkinter as tk
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageFilter
 
 app = Flask(__name__)
 
@@ -47,7 +47,6 @@ def edit2():
         pass
     return render_template("edit.html")
 
-
 @app.route("/display")
 def display():
     uploadAction('static/picture.jpg')
@@ -65,21 +64,41 @@ def addText():
     if request.method == 'POST':
         text = request.form['addText']
         #need to do unit test properly
-        textSize = int(request.form['fontSize'])
         try:
-    # Open image
+            # Open image
+            textSize = int(request.form['fontSize'])
             pic = Image.open("static/picture.jpg")
-    # Add text to image
+            # Add text to image
             attach = ImageDraw.Draw(pic)
             font_style = ImageFont.truetype("arial.ttf", textSize)
             attach.text((10, 10), text, (255, 255, 255), font=font_style)
-    # Save image
+            # Save image
             pic.save("static/picture.jpg")
-    # Display image
+            # Display image
         except TypeError:
             print("Error found.")
             pass
         return render_template("edit.html")
+
+
+@app.route("/filter", methods=["POST"])
+def addFilter():
+    if request.form['filters'] == "filter 1":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.BLUR)
+        picture.save('static/picture.jpg')
+
+    if request.form['filters'] == "filter 2":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.EMBOSS)
+        picture.save('static/picture.jpg')
+
+    if request.form['filters'] == "filter 3":
+        picture = Image.open('static/picture.jpg')
+        picture = picture.filter(ImageFilter.SHARPEN)
+        picture.save('static/picture.jpg')
+
+    return render_template("edit.html")
 
 
 def setFileName(name):

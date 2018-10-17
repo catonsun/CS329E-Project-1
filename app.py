@@ -39,7 +39,6 @@ def edit2():
     try:
         height = int(request.form['height'])
         width = int(request.form['width'])
-        size = width, height
         picture = Image.open('static/picture.jpg')
         picture = picture.resize((width, height), Image.ANTIALIAS)
         picture.save('static/picture.jpg')
@@ -73,7 +72,7 @@ def addText():
     # Add text to image
             attach = ImageDraw.Draw(pic)
             font_style = ImageFont.truetype("arial.ttf", textSize)
-            attach.text((10,10),text,(255,255,255),font=font_style)
+            attach.text((10, 10), text, (255, 255, 255), font=font_style)
     # Save image
             pic.save("static/picture.jpg")
     # Display image

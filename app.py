@@ -75,7 +75,7 @@ def addText():
             # Save image
             pic.save("static/picture.jpg")
             # Display image
-        except TypeError:
+        except ValueError:
             print("Error found.")
             pass
         return render_template("edit.html")
